@@ -28,16 +28,13 @@ if __name__ == '__main__':
     os.chdir(file_path)
     for filename in os.listdir('../_posts'):
         f = os.path.join('../_posts/', filename)
-        if os.path.isfile(f):
-            print(f)
-        with open(f, 'r') as f:
+        with open(f, 'r', encoding="utf8") as f:
             text = f.read()
             html = markdown.markdown(text)
-            print(html)
 
         filename = filename.replace('.md', '.html')
 
-        with open('../_export/'+filename, 'w') as f:
+        with open('../_export/'+filename, 'w', encoding="utf8") as f:
             f.write(TOP_TEMPLATING)
             f.write(html)
             f.write(BOTTOM_TEMPLATING)
