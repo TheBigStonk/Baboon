@@ -67,6 +67,7 @@ if __name__ == '__main__':
     for filename in os.listdir('../_posts'):
         f = os.path.join('../_posts/', filename)
         with open(f, 'r', encoding="utf8") as f:
+            article_names.append(filename)
             text = f.read()
             html = markdown.markdown(text)
 
@@ -90,12 +91,13 @@ if __name__ == '__main__':
 
         year = 9999
         for article in article_names:
+            print(article)
             if year > int(article[:4]):
                 index.write("<h3> "+article[:4]+" </h3>")
                 year = int(article[:4])
 
             index.write("""<li>
-                <a href="https://blog.maxfrancis.me/posts/"""+article+"""">Simple is Better - 1st December """+article[:4]+"""</a>
+                <a href="https://blog.maxfrancis.me/posts/"""+article+"""">"""+article[11:-3]+""" - """+article[8:10]+""" / """+article[5:7]+""" / """+article[:4]+"""</a>
             </li>""")
         index.write(BOTTOM_TEMPLATING)
         index.close()
