@@ -72,19 +72,18 @@ if __name__ == '__main__':
 
         filename = filename.replace('.md', '.html')
 
-<<<<<<< HEAD
+        # make a directory for the exported HTML files if it doesn't exist
+        if not os.path.exists('../_export'):
+            os.makedirs('../_export')
+
         with open('../_export/'+filename, 'w', encoding="utf8") as f:
-=======
-        with open('../_export/'+filename, 'w') as f:
-            article_names.append(filename)
->>>>>>> d2216c96b7d9acad53d322c3a0e5927b98af648d
             f.write(TOP_TEMPLATING)
             f.write(html)
             f.write(BOTTOM_TEMPLATING)
             f.close()
 
     article_names.sort(reverse=True)
-    with open('../_export/index.html', 'w') as index:   
+    with open('../_export/index.html', 'w') as index:
         index.write(TOP_TEMPLATING)
         index.write("""<h2>- Blog Posts -</h2>
                        <hr>""")
@@ -94,7 +93,7 @@ if __name__ == '__main__':
             if year > int(article[:4]):
                 index.write("<h3> "+article[:4]+" </h3>")
                 year = int(article[:4])
-            
+
             index.write("""<li>
                 <a href="https://blog.maxfrancis.me/posts/"""+article+"""">Simple is Better - 1st December """+article[:4]+"""</a>
             </li>""")
