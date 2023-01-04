@@ -70,6 +70,8 @@ if __name__ == '__main__':
             article_names.append(filename)
             text = f.read()
             html = markdown.markdown(text)
+
+            # remove the Jekyll templating for image tags
             html = html.replace('{{ site.baseurl }}/../', '')
             html = html.replace('alt="_config.yml"', '')
 
