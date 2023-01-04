@@ -70,6 +70,8 @@ if __name__ == '__main__':
             article_names.append(filename)
             text = f.read()
             html = markdown.markdown(text)
+            html = html.replace('{{ site.baseurl }}/../', '')
+            html = html.replace('alt="_config.yml"', '')
 
         filename = filename.replace('.md', '.html')
 
@@ -97,7 +99,7 @@ if __name__ == '__main__':
                 year = int(article[:4])
 
             index.write("""<li>
-                <a href="https://blog.maxfrancis.me/posts/"""+article+"""">"""+article[11:-3]+""" - """+article[8:10]+""" / """+article[5:7]+""" / """+article[:4]+"""</a>
+                <a href="https://blog.maxfrancis.me/posts/"""+article[:-2]+"""html"> """+article[11:-3]+""" - """+article[8:10]+""" / """+article[5:7]+""" / """+article[:4]+""" </a>
             </li>""")
         index.write(BOTTOM_TEMPLATING)
         index.close()
